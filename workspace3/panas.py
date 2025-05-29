@@ -28,8 +28,8 @@ print(ratings.shape)
 
 print('----------------------------------------')
 print('Timestamp variables were deleted')
-del ratings['timestamp']
-del tags['timestamp']
+# del ratings['timestampsource env/bin/activate']
+# del tags['timestamp']
 
 print(ratings.head(2))
 print(tags.head(2))
@@ -83,7 +83,63 @@ tags=tags.dropna()
 print('---------------------Data visualization------------------')
 
 import matplotlib.pyplot as plt
-ratings.hist(column='rating',figsize=(15,10))
-plt.show()
+# ratings.hist(column='rating',figsize=(15,10))
+# plt.show()
 
 
+print(tags.head(3))
+
+tagstworvaribles = tags[['movieId', 'tag']]
+print(tagstworvaribles.head(5))
+
+print(ratings.shape)
+
+simplestaken=ratings[1000:1020]
+print(simplestaken.shape)
+print(simplestaken.head(2))
+
+print(tags.head(3))
+tags_counts=tags['tag'].value_counts()
+print(tags_counts.shape)
+print(tags_counts[:10])
+
+# tags_counts[:10].plot(kind='bar', figsize=(15, 10), color='skyblue', edgecolor='black')
+# plt.show()
+
+
+print(ratings.head(2))
+print(ratings.head(4))
+is_highly_rated=ratings['rating']>=4
+is_highly_rated=ratings[is_highly_rated]
+print(is_highly_rated.shape)
+
+print(movies.shape)
+print(movies.columns)
+print(movies.head(10))
+
+
+print('----------------------------------------------')
+animation_movies = movies['genres'].str.contains('Animation')
+animation_movies=movies[animation_movies]
+print(movies.shape)
+print('Total de películas con el género Animation:')
+print(animation_movies.shape)
+print(animation_movies.head(5))
+
+print('----------------------------------------------')
+
+ratings_counts=ratings[['movieId','rating']].groupby('rating').count()
+print(ratings_counts.shape)
+print(ratings_counts)
+
+print('----------------------------------------------')
+
+averge_rating=ratings[['movieId','rating']].groupby('movieId').mean()
+print(averge_rating.shape)
+print(averge_rating)
+
+print('----------------------------------------------')
+
+contar=ratings[['movieId']].groupby('movieId').count()
+print(contar.shape)
+print(contar)
